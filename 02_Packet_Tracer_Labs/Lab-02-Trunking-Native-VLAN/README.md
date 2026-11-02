@@ -126,6 +126,7 @@ Translating "end"...domain server (255.255.255.255)
 
 - Los comandos de configuración solo existen en `(config)#`. Hay que pasar por `enable` y `configure terminal`.
 - Al fallar un comando, IOS lo toma por un nombre de host y tarda en "traducirlo" por DNS. Para evitarlo: `no ip domain-lookup`.
+- Errores típicos vistos: typo `confogure terminal`, y escribir `enable` / `configure terminal` estando ya dentro de `(config)#` (`% Incomplete command` / `Invalid input`).
 - Prompts: `>` usuario, `#` privilegiado, `(config)#` configuración global, `(config-if)#` interfaz.
 
 ### Caso B: puerto en modo access en un extremo y trunk en el otro
@@ -166,6 +167,23 @@ SW1 se configuró con native VLAN 99 mientras SW2 seguía con la 1:
 - **CDP** avisa del desajuste: nativa 99 aquí, 1 en el vecino.
 - **STP** compara el PVID de las BPDU: bloquea la VLAN afectada (no todo el puerto) y la desbloquea cuando recupera consistencia.
 - En Packet Tracer este ciclo **bloqueo → CDP → desbloqueo se repitió** varias veces mientras duró el desajuste.
+
+**Vista desde SW2** (nativa 1, recibiendo de SW1 con nativa 99):
+
+```text
+%SPANTREE-2-RECV_PVID_ERR: Received BPDU with inconsistent peer vlan id 99 on GigabitEthernet0/1 VLAN1.
+%SPANTREE-2-BLOCK_PVID_LOCAL: Blocking GigabitEthernet0/1 on VLAN0001. Inconsistent local vlan.
+%CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on GigabitEthernet0/1 (1), with SW1 GigabitEthernet0/1 (99).
+```
+
+**Corrección** en SW2 (`switchport trunk native vlan 99`): STP desbloquea de inmediato.
+
+```text
+%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet0/1 on VLAN0099. Port consistency restored.
+%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet0/1 on VLAN0001. Port consistency restored.
+```
+
+**Prueba provocada:** se volvió a poner `switchport trunk native vlan 1` en SW2. Esta vez solo aparecieron avisos de CDP (repetidos) en la consola; después se restauró la 99 y se guardó con `write memory`.
 
 Estado final correcto (nativa 99 en ambos extremos):
 
