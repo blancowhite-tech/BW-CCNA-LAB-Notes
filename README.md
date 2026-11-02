@@ -22,6 +22,7 @@ Aprobar el examen CCNA 200-301 v1.1 antes de su retirada (2 de febrero de 2027),
 | # | Lab | Tema | Estado |
 |---|---|---|---|
 | 01 | [VLANs y Trunking](02_Packet_Tracer_Labs/Lab-01-VLANs-Trunking/README.md) | Network Access | ✅ |
+| 02 | [Trunking 802.1Q y Native VLAN](02_Packet_Tracer_Labs/Lab-02-Trunking-Native-VLAN/README.md) | Network Access | ✅ |
 
 ## 🧰 Entorno
 
