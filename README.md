@@ -16,6 +16,7 @@ Aprobar el examen CCNA 200-301 v1.1 antes de su retirada (2 de febrero de 2027),
 - `02_Packet_Tracer_Labs/` - Laboratorios documentados (y archivos `.pkt`).
 - `03_Troubleshooting/` - Retos de resolución de fallos.
 - `04_Simulacros/` - Resultados de los exámenes de práctica.
+- [`05_CML_Lab/`](05_CML_Lab/README.md) - Instalación de Cisco Modeling Labs Free en virt-manager (KVM) y laboratorios con imágenes reales de IOS.
 
 ## 🧪 Laboratorios
 
@@ -28,6 +29,7 @@ Aprobar el examen CCNA 200-301 v1.1 antes de su retirada (2 de febrero de 2027),
 
 - **SO:** Kali Linux (VM)
 - **Simulador:** Cisco Packet Tracer 9.0.1
+- **Laboratorio con IOS real:** Cisco Modeling Labs Free 2.10.1 en virt-manager/libvirt (ver [`05_CML_Lab`](05_CML_Lab/README.md))
 - **Documentación:** Markdown / GitHub
 
 ## ⚠️ Filosofía de trabajo

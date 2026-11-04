@@ -1,0 +1,12 @@
+# Software de Cisco y discos de VM (licencia propia, muy pesados)
+*.iso
+*.qcow2
+*.ova
+cml2_*.zip
+refplat-*.zip
+*.pem
+*.signature
+
+# Secretos
+*.key
+.env
